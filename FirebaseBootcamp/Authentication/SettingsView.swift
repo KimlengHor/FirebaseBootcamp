@@ -11,9 +11,14 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     
     @Published var authProviders: [AuthProviderOption] = []
+    @Published var authUser: AuthDataResultModel? = nil
     
     func loadAuthProviders() throws {
         authProviders = try AuthenticationManager.shared.getProvider()
+    }
+    
+    func loadAuthUser() {
+        self.authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
     }
     
     func logOut() throws {
@@ -37,6 +42,31 @@ final class SettingsViewModel: ObservableObject {
         let password = "hello123"
         try await AuthenticationManager.shared.updatePassword(password: password)
     }
+    
+    func linkGoogleAccount() async throws {
+        let helper = SignInGoogleHelper()
+        let tokens = try await helper.signIn()
+        let authDataResult = try await AuthenticationManager.shared.linkGoogle(tokens: tokens)
+        self.authUser = authDataResult
+    }
+    
+    func linkAppleAccount() async throws {
+        let helper = SignInAppleHelper()
+        let tokens = try await helper.startSignInWithAppleFlow()
+        let authDataResult = try await AuthenticationManager.shared.linkApple(tokens: tokens)
+        self.authUser = authDataResult
+    }
+    
+    func linkEmailAccount() async throws {
+        let email = "hellokim@gmail.com"
+        let password = "123456"
+        let authDataResult = try await AuthenticationManager.shared.linkEmail(email: email, password: password)
+        self.authUser = authDataResult
+    }
+    
+    func deleteAccount() async throws {
+        try await AuthenticationManager.shared.delete()
+    }
 }
 
 struct SettingsView: View {
@@ -52,17 +82,36 @@ struct SettingsView: View {
                         try viewModel.logOut()
                         showSignInView = true
                     } catch {
-                        print("Cannot log out", error.localizedDescription)
+                        print("Cannot delete", error.localizedDescription)
                     }
                 }
             }
+            
+            Button(role: .destructive) {
+                Task {
+                    do {
+                        try await viewModel.deleteAccount()
+                        showSignInView = true
+                    } catch {
+                        print("Cannot log out", error.localizedDescription)
+                    }
+                }
+            } label: {
+                Text("Delete Account")
+            }
+            
             if viewModel.authProviders.contains(.email) {
                 emailSection
+            }
+            
+            if viewModel.authUser?.isAnonymous == true {
+                anonymousSection
             }
         }
         .onAppear {
             do {
                 try viewModel.loadAuthProviders()
+                viewModel.loadAuthUser()
             } catch {
                 print("Error", error.localizedDescription)
             }
@@ -116,6 +165,45 @@ extension SettingsView {
             }
         } header: {
             Text("Email function")
+        }
+    }
+    
+    private var anonymousSection: some View {
+        Section {
+            Button("Link Google Account") {
+                Task {
+                    do {
+                        try await viewModel.linkGoogleAccount()
+                        print("Google linked")
+                    } catch {
+                        print("Cannot reset password", error.localizedDescription)
+                    }
+                }
+            }
+            
+            Button("Link Apple Account") {
+                Task {
+                    do {
+                        try await viewModel.linkAppleAccount()
+                        print("Apple linked")
+                    } catch {
+                        print("Cannot update email", error.localizedDescription)
+                    }
+                }
+            }
+            
+            Button("Link Email Account") {
+                Task {
+                    do {
+                        try await viewModel.linkEmailAccount()
+                        print("Email linked")
+                    } catch {
+                        print("Cannot update password", error.localizedDescription)
+                    }
+                }
+            }
+        } header: {
+            Text("Create account")
         }
     }
 }
