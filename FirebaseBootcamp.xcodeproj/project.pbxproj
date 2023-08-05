@@ -35,7 +35,10 @@
 		716E68842A72AE3F0010E89F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 716E68832A72AE3F0010E89F /* GoogleSignInSwift */; };
 		716E68872A72AFA30010E89F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716E68862A72AFA30010E89F /* Utilities.swift */; };
 		716E688A2A72B6400010E89F /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716E68892A72B6400010E89F /* SignInGoogleHelper.swift */; };
+		71A33D792A7E8E0000DC92C9 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A33D782A7E8E0000DC92C9 /* TabbarView.swift */; };
+		71A33D7C2A7E9EEA00DC92C9 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A33D7B2A7E9EE900DC92C9 /* FavoriteView.swift */; };
 		71ACDC2E2A741374007CB6D5 /* SignInWithAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ACDC2D2A741374007CB6D5 /* SignInWithAppleHelper.swift */; };
+		71FC1F812A7ECC08002CB43A /* ProductCellViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FC1F802A7ECC08002CB43A /* ProductCellViewBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,8 +65,11 @@
 		716E68862A72AFA30010E89F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		716E68882A72B53A0010E89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		716E68892A72B6400010E89F /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
+		71A33D782A7E8E0000DC92C9 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
+		71A33D7B2A7E9EE900DC92C9 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		71ACDC2C2A740A7D007CB6D5 /* FirebaseBootcamp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirebaseBootcamp.entitlements; sourceTree = "<group>"; };
 		71ACDC2D2A741374007CB6D5 /* SignInWithAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleHelper.swift; sourceTree = "<group>"; };
+		71FC1F802A7ECC08002CB43A /* ProductCellViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,8 @@
 		7105133F2A7950A0001E0867 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				71A33D7A2A7E9ECE00DC92C9 /* Favorites */,
+				71A33D772A7E8DE700DC92C9 /* Tabbar */,
 				716135202A7BFA0600DFE955 /* Product */,
 				710513492A795170001E0867 /* Profile */,
 				710513432A795112001E0867 /* Authentication */,
@@ -214,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				716135262A7BFF8400DFE955 /* ProductCellView.swift */,
+				71FC1F802A7ECC08002CB43A /* ProductCellViewBuilder.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -225,6 +234,22 @@
 				7161351E2A7BF98900DFE955 /* ProductDatabase.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		71A33D772A7E8DE700DC92C9 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				71A33D782A7E8E0000DC92C9 /* TabbarView.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		71A33D7A2A7E9ECE00DC92C9 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				71A33D7B2A7E9EE900DC92C9 /* FavoriteView.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +352,11 @@
 				716E68872A72AFA30010E89F /* Utilities.swift in Sources */,
 				716135242A7BFB5F00DFE955 /* ProductManager.swift in Sources */,
 				710513422A7950E9001E0867 /* SettingsViewModel.swift in Sources */,
+				71A33D7C2A7E9EEA00DC92C9 /* FavoriteView.swift in Sources */,
 				71ACDC2E2A741374007CB6D5 /* SignInWithAppleHelper.swift in Sources */,
+				71FC1F812A7ECC08002CB43A /* ProductCellViewBuilder.swift in Sources */,
 				7105134B2A79517A001E0867 /* ProfileView.swift in Sources */,
+				71A33D792A7E8E0000DC92C9 /* TabbarView.swift in Sources */,
 				7107E90C2A7171F5004B5FBB /* SignInEmailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

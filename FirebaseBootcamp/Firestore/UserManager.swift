@@ -109,6 +109,14 @@ final class UserManager {
         userCollection.document(userId)
     }
     
+    private func userFavoriteProductCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("favorite_products")
+    }
+    
+    private func userFavoirteProductDocument(userId: String, favoriteProductId: String) -> DocumentReference {
+        userFavoriteProductCollection(userId: userId).document(favoriteProductId)
+    }
+    
     private let encoder: Firestore.Encoder = {
         let encoder = Firestore.Encoder()
         return encoder
@@ -167,5 +175,53 @@ final class UserManager {
         ]
         
         try await userDocument(userId: userId).updateData(data as [AnyHashable : Any])
+    }
+    
+    func addUserFavoriteProduct(userId: String, productId: Int) async throws {
+        
+        let document = userFavoriteProductCollection(userId: userId).document()
+        let documentId = document.documentID
+        
+        let data: [String: Any] = [
+            UserFavoriteProduct.CodingKeys.id.rawValue: documentId,
+            UserFavoriteProduct.CodingKeys.productId.rawValue: productId,
+            UserFavoriteProduct.CodingKeys.dateCraete.rawValue: Timestamp()
+        ]
+        
+        try await document.setData(data)
+    }
+    
+    func removeUserFavoriteProduct(userId: String, favoriteProductId: String) async throws {
+        try await userFavoirteProductDocument(userId: userId, favoriteProductId: favoriteProductId).delete()
+    }
+    
+    func getAllUserFavoriteProducts(userId: String) async throws -> [UserFavoriteProduct] {
+        try await userFavoriteProductCollection(userId: userId).getDocuments(type: UserFavoriteProduct.self)
+    }
+}
+
+struct UserFavoriteProduct: Codable {
+    let id: String
+    let productId: Int
+    let dateCraete: Date
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case productId = "product_id"
+        case dateCraete = "date_created"
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.productId, forKey: .productId)
+        try container.encode(self.dateCraete, forKey: .dateCraete)
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.productId = try container.decode(Int.self, forKey: .productId)
+        self.dateCraete = try container.decode(Date.self, forKey: .dateCraete)
     }
 }
