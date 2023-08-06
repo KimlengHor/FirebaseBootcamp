@@ -127,6 +127,8 @@ final class UserManager {
         return decoder
     }()
     
+    private var userFavoriteProductsListener: ListenerRegistration? = nil
+    
     func createNewUser(user: DBUser) async throws {
         try userDocument(userId: user.userId).setData(from: user)
     }
@@ -198,7 +200,51 @@ final class UserManager {
     func getAllUserFavoriteProducts(userId: String) async throws -> [UserFavoriteProduct] {
         try await userFavoriteProductCollection(userId: userId).getDocuments(type: UserFavoriteProduct.self)
     }
+    
+    func removeListenerForAllUserFavoriteProducts() {
+        self.userFavoriteProductsListener?.remove()
+    }
+    
+//    func addListenerForAllUserFavoriteProducts(userId: String) -> AnyPublisher<[UserFavoriteProduct], Error> {
+//        let publisher = PassthroughSubject<[UserFavoriteProduct], Error>()
+//        let userFavoriteProductsListener = userFavoriteProductCollection(userId: userId).addSnapshotListener { snapshot, error in
+//            guard let documents = snapshot?.documents else {
+//                print("No documents")
+//                return
+//            }
+//
+//            let products: [UserFavoriteProduct] = documents.compactMap { doc in
+//                return try? doc.data(as: UserFavoriteProduct.self)
+//            }
+//
+//            publisher.send(products)
+//
+////            snapshot?.documentChanges.forEach({ diff in
+////                if diff.type == .added {
+////
+////                }
+////
+////                if diff.type == .modified {
+////
+////                }
+////
+////                if diff.type == .removed {
+////
+////                }
+////            })
+//
+//        }
+//        return publisher.eraseToAnyPublisher()
+//    }
+    
+    func addListenerForAllUserFavoriteProducts(userId: String) -> AnyPublisher<[UserFavoriteProduct], Error> {
+        let (publisher, listener) = userFavoriteProductCollection(userId: userId).addSnapshotListener(as: UserFavoriteProduct.self)
+        self.userFavoriteProductsListener = listener
+        return publisher
+    }
 }
+
+import Combine
 
 struct UserFavoriteProduct: Codable {
     let id: String

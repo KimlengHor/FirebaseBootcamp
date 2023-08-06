@@ -31,6 +31,10 @@
 		716135222A7BFA1000DFE955 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716135212A7BFA1000DFE955 /* ProductView.swift */; };
 		716135242A7BFB5F00DFE955 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716135232A7BFB5F00DFE955 /* ProductManager.swift */; };
 		716135272A7BFF8400DFE955 /* ProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716135262A7BFF8400DFE955 /* ProductCellView.swift */; };
+		7162EAC22A7FF93F0095139A /* Query+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162EAC12A7FF93F0095139A /* Query+EXT.swift */; };
+		7162EAC62A7FF9B90095139A /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162EAC52A7FF9B90095139A /* OnFirstAppearViewModifier.swift */; };
+		7162EAC82A7FF9E80095139A /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162EAC72A7FF9E80095139A /* FavoriteViewModel.swift */; };
+		7162EACA2A7FFA1A0095139A /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162EAC92A7FFA1A0095139A /* ProductViewModel.swift */; };
 		716E68822A72AE3F0010E89F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 716E68812A72AE3F0010E89F /* GoogleSignIn */; };
 		716E68842A72AE3F0010E89F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 716E68832A72AE3F0010E89F /* GoogleSignInSwift */; };
 		716E68872A72AFA30010E89F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716E68862A72AFA30010E89F /* Utilities.swift */; };
@@ -62,6 +66,10 @@
 		716135212A7BFA1000DFE955 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		716135232A7BFB5F00DFE955 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		716135262A7BFF8400DFE955 /* ProductCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellView.swift; sourceTree = "<group>"; };
+		7162EAC12A7FF93F0095139A /* Query+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+EXT.swift"; sourceTree = "<group>"; };
+		7162EAC52A7FF9B90095139A /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
+		7162EAC72A7FF9E80095139A /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		7162EAC92A7FFA1A0095139A /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		716E68862A72AFA30010E89F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		716E68882A72B53A0010E89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		716E68892A72B6400010E89F /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
@@ -169,6 +177,8 @@
 		7107E8EF2A7169A9004B5FBB /* FirebaseBootcamp */ = {
 			isa = PBXGroup;
 			children = (
+				7162EAC32A7FF9A10095139A /* Components */,
+				7162EAC02A7FF91E0095139A /* Extensions */,
 				71ACDC2C2A740A7D007CB6D5 /* FirebaseBootcamp.entitlements */,
 				716E68882A72B53A0010E89F /* Info.plist */,
 				7105133F2A7950A0001E0867 /* Core */,
@@ -214,6 +224,7 @@
 			children = (
 				716135252A7BFF7200DFE955 /* Subviews */,
 				716135212A7BFA1000DFE955 /* ProductView.swift */,
+				7162EAC92A7FFA1A0095139A /* ProductViewModel.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -225,6 +236,30 @@
 				71FC1F802A7ECC08002CB43A /* ProductCellViewBuilder.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		7162EAC02A7FF91E0095139A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7162EAC12A7FF93F0095139A /* Query+EXT.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7162EAC32A7FF9A10095139A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7162EAC42A7FF9A70095139A /* ViewModifiers */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7162EAC42A7FF9A70095139A /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				7162EAC52A7FF9B90095139A /* OnFirstAppearViewModifier.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		716E68852A72AF8F0010E89F /* Utilities */ = {
@@ -248,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				71A33D7B2A7E9EE900DC92C9 /* FavoriteView.swift */,
+				7162EAC72A7FF9E80095139A /* FavoriteViewModel.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -344,6 +380,7 @@
 				716135222A7BFA1000DFE955 /* ProductView.swift in Sources */,
 				7107E8F12A7169A9004B5FBB /* FirebaseBootcampApp.swift in Sources */,
 				7107E9102A71772B004B5FBB /* RootView.swift in Sources */,
+				7162EAC82A7FF9E80095139A /* FavoriteViewModel.swift in Sources */,
 				7161351F2A7BF98900DFE955 /* ProductDatabase.swift in Sources */,
 				710513482A795159001E0867 /* SignInEmailViewModel.swift in Sources */,
 				716E688A2A72B6400010E89F /* SignInGoogleHelper.swift in Sources */,
@@ -353,11 +390,14 @@
 				716135242A7BFB5F00DFE955 /* ProductManager.swift in Sources */,
 				710513422A7950E9001E0867 /* SettingsViewModel.swift in Sources */,
 				71A33D7C2A7E9EEA00DC92C9 /* FavoriteView.swift in Sources */,
+				7162EACA2A7FFA1A0095139A /* ProductViewModel.swift in Sources */,
 				71ACDC2E2A741374007CB6D5 /* SignInWithAppleHelper.swift in Sources */,
+				7162EAC62A7FF9B90095139A /* OnFirstAppearViewModifier.swift in Sources */,
 				71FC1F812A7ECC08002CB43A /* ProductCellViewBuilder.swift in Sources */,
 				7105134B2A79517A001E0867 /* ProfileView.swift in Sources */,
 				71A33D792A7E8E0000DC92C9 /* TabbarView.swift in Sources */,
 				7107E90C2A7171F5004B5FBB /* SignInEmailView.swift in Sources */,
+				7162EAC22A7FF93F0095139A /* Query+EXT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
