@@ -35,7 +35,7 @@ final class CrashManager {
 
 struct CrashView: View {
     var body: some View {
-        ZStack {
+        ZStack {  
             Color.gray.ignoresSafeArea()
             
             VStack {
